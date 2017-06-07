@@ -1,0 +1,23 @@
+{
+  "name": "wod",
+  "version": "1.0.0",
+  "description": "word of the day",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pymitch/wod.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pymitch/wod/issues"
+  },
+  "homepage": "https://github.com/pymitch/wod#readme"
+}
