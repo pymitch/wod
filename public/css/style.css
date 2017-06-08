@@ -1,0 +1,31 @@
+
+@media(min-width:468px){
+    .container-1{
+        display:flex;
+        justify-content: center;
+    }
+    .container-2{
+        display:flex;
+    }
+}
+.container-1 div, .container-2 div{
+    border:1px #ccc solid;
+    padding:10px;
+}
+
+.box-1{
+    flex:2;
+    order:1;
+}
+.box-2{
+    flex:2;
+    order:2;
+}
+.box-3{
+    flex:2;
+    order:3;
+}
+.box-4{
+    flex:2;
+    order:4;
+}
