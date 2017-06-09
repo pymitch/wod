@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const pug = require('pug');
 
-
-
 // initalize app
 const app = express();
 
@@ -11,12 +9,14 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
 // test word collection
 let words = {
     "penchant":"a strong and continued inclination",
     "incoherent":"lacking orderly continuity",
     "catercorner":"in a diagonal or oblique position",
     "adumbrate":"to foreshadow vaguely",
+    "plagiary":"one that plagiarizes"
 };
 randomWord = function(wordsObj) {
     wordsArray = [];
@@ -38,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set home route
 app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, 'public/index.html'))
+    //res.sendFile(path.join(__dirname, 'public/index.html'))
+    res.redirect(path.join(__dirname, 'public/index.html'))
 });
 
 //set app route
