@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
 const updateWords = require('./updateWords.js')
-const fs = require('fs')
+const handlebars = require('express-handlebars')
 
 // initalize app
 const app = express();
+
 
 // load words dictionary
 let wordList = require('./dictionary.json')
@@ -14,12 +15,14 @@ let wordList = require('./dictionary.json')
 
 app.use('/public', express.static('public'))
 
+// set vew engine
+app.engine('handlebars', handlebars({defaultLayout:'main'}))
+app.set('view engine', 'handlebars')
+
 // set home route
 app.get('/', function(req,res){
-    //console.log(a)
-    html = path.join(__dirname,'index.html')
-    //res.sendFile(path.join(__dirname,'words.json'),)
-    res.sendfile(path.join(__dirname,'index.html'))
+    res.render(path.join(__dirname,'layout'))
+    //res.sendfile(path.join(__dirname,'index.html'))
 });
 
 //start server
