@@ -1,15 +1,9 @@
-const express = require('express');
-const path = require('path');
-const pug = require('pug');
-
-
+const express = require('express')
+const path = require('path')
+let updateWords = require('./updateWords.js')
 
 // initalize app
-const app = express();
-
-// load view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+const app = express()
 
 // test word collection
 let words = {
@@ -17,29 +11,16 @@ let words = {
     "incoherent":"lacking orderly continuity",
     "catercorner":"in a diagonal or oblique position",
     "adumbrate":"to foreshadow vaguely",
-};
-randomWord = function(wordsObj) {
-    wordsArray = [];
-    wordsArray = Object.keys(wordsObj);
-    var random = wordsArray[Math.floor(Math.random()*wordsArray.length)];
-    def = wordsObj[random]
-    
-    var obj = {
-        word: random,
-        definition: def
-    }
-    return obj
 }
-console.log(Object.keys(words));
 
-console.log(randomWord(words));
+app.use('/public', express.static( 'public'))
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(updateWords())
 
 // set home route
 app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, 'public/index.html'))
-});
+    res.sendFile(path.join(__dirname, 'index.html'))
+})
 
 //set app route
 app.get('/app', function(req,res){
@@ -48,5 +29,5 @@ app.get('/app', function(req,res){
 
 //start server
 app.listen(3000, function(){
-    console.log('Server started on port 3000');
-});
+    console.log('Server started on port 3000')
+})
