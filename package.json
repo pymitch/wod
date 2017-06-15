@@ -4,7 +4,8 @@
   "description": "word of the day",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "jsonfile": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,17 +1,5 @@
-[
-    {
-        "penchant":"a strong and continued inclination"
-    },
-    {
-        "incoherent":"lacking orderly continuity"
-    },
-    {
-        "catercorner":"in a diagonal or oblique position"
-    },
-    {
-        "adumbrate":"to foreshadow vaguely"
-    },
-    {
-        "plagiary":"one that plagiarizes"
-    }
-]
+{
+  "word": "word3",
+  "definitions": ["def1","def2","def3","def4"],
+  "position":3
+}

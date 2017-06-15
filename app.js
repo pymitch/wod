@@ -1,33 +1,29 @@
-const express = require('express')
-const path = require('path')
-let updateWords = require('./updateWords.js')
+const express = require('express');
+const path = require('path');
+const updateWords = require('./updateWords.js')
+const fs = require('fs')
 
 // initalize app
-const app = express()
+const app = express();
 
-// test word collection
-let words = {
-    "penchant":"a strong and continued inclination",
-    "incoherent":"lacking orderly continuity",
-    "catercorner":"in a diagonal or oblique position",
-    "adumbrate":"to foreshadow vaguely",
-}
+// load words dictionary
+let wordList = require('./dictionary.json')
 
-app.use('/public', express.static( 'public'))
+// set updateWords route
+//app.use(updateWords(wordList))
 
-app.use(updateWords())
+app.use('/public', express.static('public'))
 
 // set home route
 app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, 'index.html'))
-})
-
-//set app route
-app.get('/app', function(req,res){
-    res.send()
-})
+    //console.log(a)
+    html = path.join(__dirname,'index.html')
+    //res.sendFile(path.join(__dirname,'words.json'),)
+    res.sendfile(path.join(__dirname,'index.html'))
+});
 
 //start server
 app.listen(3000, function(){
-    console.log('Server started on port 3000')
-})
+    console.log('Server started on port 3000');
+});
+
