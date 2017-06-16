@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&effect=canvas-print');
-
-@media(min-width:468px){
+@import url('https://www.w3schools.com/w3css/4/w3.css');
+body {
+    text-align: center
+}
+@media(min-width:200px){
     h1.font-effect-canvas-print{
         font-family: 'Open Sans', sans-serif;
         font-size:40px;
@@ -8,7 +11,11 @@
     .card{
         background:#9bbff4;
         padding: 20px;
-        width: 500px;
+        min-width: 400px;
+        max-width: 200px;
+        position: center;
+        margin: auto;
+        margin-top: 5%;
     }
     .container-word{
         font-family: 'Muli';
@@ -33,9 +40,10 @@
     padding-left: 20px;
     /*width: 500px;*/
 }
-.next-button{
+.hidden{
     visibility: hidden;
 }
+
 .hover{
     background: tan;
 }
@@ -44,4 +52,12 @@
 }
 .wrong{
     color: red;
+}
+#next-button{
+    text-align: right;
+}
+button{
+    background-color: green;
+    left: -10px;
+    position: relative
 }

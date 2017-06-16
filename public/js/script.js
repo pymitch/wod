@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    $('.next-button').fadeOut()
     // alert(position)
     $('.box').hover(
         function(){
@@ -10,15 +9,28 @@ $(document).ready(function(){
     )
     $('.box').click(
         function(){
-            // console.log(typeof(this.id))
-            // console.log(typeof(position))
-            // console.log((this.id == position))
+            // check if item is correct and change format
             if(this.id == position){
                 $(this).addClass('right')
+                // add request to update database
+
             } else {
                 $(this).addClass('wrong')
+                // add request to update database
             }
-            $('.next-button').fadeIn()
+            $('.box').off()
+            $('#next-button').removeClass('hidden')
+            $(document).keypress(function(e){
+                if(e.which == 13) {
+                    location.reload()
+                }        
+            })
         }
     )
+    $('.button').click(
+        function(){
+            location.reload()
+        }
+    )
+
 })
