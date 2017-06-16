@@ -2,10 +2,18 @@ const express = require('express');
 const path = require('path');
 const updateWords = require('./updateWords.js')
 const handlebars = require('express-handlebars')
+const mongoose = require('mongoose')
 
 // initalize app
 const app = express();
 
+// define article schema
+var Schema = mongoose.Schema;
+var userSchema = new Schema({
+    user: String, 
+    bins:[],
+    lastLogin: Date
+})
 
 // load words dictionary
 let wordList = require('./dictionary.json')
@@ -31,9 +39,20 @@ app.get('/', function(req,res){
     })
 });
 
+// set post route
+app.post('/', function(req,res){
+    console.log('test')
+    // change to database wordlist update
+    if (req.data=="true"){
+        console.log("got it right")
+    }
+    if (req.data=="false"){
+        console.log("got it wrong")
+    }
+})
 
 //start server
-app.listen(3000, function(){
-    console.log('Server started on port 3000');
+app.listen(8080, function(){
+    console.log('Server started on port 8080');
 });
 
