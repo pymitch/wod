@@ -1,18 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&effect=canvas-print');
 
 @media(min-width:468px){
-    .container-1{
+    h1.font-effect-canvas-print{
+        font-family: 'Open Sans', sans-serif;
+        font-size:40px;
+    }
+    .card{
+        background:#9bbff4;
+        padding: 20px;
+        width: 500px;
+    }
+    .container-word{
+        font-family: 'Muli';
+        font-size: 25px;
+        /*font-effect-canvas-print;*/
+        color: whitesmoke;
+        text-align: center;
         display:flex;
         justify-content: center;
     }
-    .container-2{
-        display:flex;
-    }
-}
-.container-def div{
-    border:1px #ccc solid;
-    padding:10px;
+    /*.container-def{
+    }*/
 }
 .box{
     flex:2;
-    order:1;
+    /*order:1;*/
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px;
+    text-align: left;
+    display:flex;
+    background: #EDE6DE;
+    padding-left: 20px;
+    /*width: 500px;*/
+}
+.next-button{
+    visibility: hidden;
+}
+.hover{
+    background: tan;
+}
+.right{
+    color: green;
+}
+.wrong{
+    color: red;
 }

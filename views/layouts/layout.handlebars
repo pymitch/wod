@@ -5,23 +5,33 @@
         crossorigin="anonymous">
     </script>
     <script src="./public/js/script.js"></script>
+    <script>
+        let position = {{position}}
+    </script>
 </head>
-<div class="container-word">
-    <h1>{{word}}</h1>
-</div>
-<div class="container-def">
-    <div class="box" id="0">
-        <p>{{def0}}</p>
+<body>
+    <div class="card">
+        <div class="container-word">
+            <h1 class="font-effect-canvas-print">{{word}}</h1>
+        </div>
+        <div class="container-def">
+            <div class="box" id="0">
+                <p>{{def0}}</p>
+            </div>
+            <div class="box" id="1">
+                <p>{{def1}}</p>
+            </div>
+        </div>
+        <div class="container-def">
+            <div class="box" id="2">
+                <p>{{def2}}</p>
+            </div>
+            <div class="box" id="3">
+                <p>{{def3}}</p>
+            </div>
+        </div>
+        <div class="next-button">
+            <button>Next</button>
+        </div>
     </div>
-    <div class="box" id="1">
-        <p>{{def1}}</p>
-    </div>
-</div>
-<div class="container-def">
-    <div class="box" id="2">
-        <p>{{def2}}</p>
-    </div>
-    <div class="box" id="3">
-        <p>{{def3}}</p>
-    </div>
-</div>
+</body>
