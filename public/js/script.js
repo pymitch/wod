@@ -14,9 +14,10 @@ $(document).ready(function(){
                 $(this).addClass('right')
                 // add request to update database
                 $.ajax({
-                    type:'UPDATE',
+                    type:'POST',
                     url: '/',
-                    data: "true",
+                    data: {answer: "correct"},
+                    dataType: "json",
                     success: function(response){
                         console.log("sent data")
                         },
@@ -28,9 +29,10 @@ $(document).ready(function(){
                 $(this).addClass('wrong')
                 // add request to update database
                 $.ajax({
-                    type:'UPDATE',
+                    type:'POST',
                     url: '/',
-                    data: "false",
+                    dataType: "json",
+                    data: {answer: "wrong"},
                     success: function(response){
                         console.log("sent data")
                         },
@@ -44,7 +46,7 @@ $(document).ready(function(){
             $(document).keypress(function(e){
                 if(e.which == 13) {
                     location.reload()
-                }        
+                }
             })
         }
     )
@@ -53,5 +55,4 @@ $(document).ready(function(){
             location.reload()
         }
     )
-
 })

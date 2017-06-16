@@ -3,7 +3,7 @@ const path = require('path');
 const updateWords = require('./updateWords.js')
 const handlebars = require('express-handlebars')
 const mongoose = require('mongoose')
-
+const bodyParser = require("body-parser")
 // initalize app
 const app = express();
 
@@ -20,11 +20,19 @@ let wordList = require('./dictionary.json')
 
 // set updateWords route
 app.use(updateWords(wordList))
-app.use('/public', express.static('public'))
 
 // set vew engine
 app.engine('handlebars', handlebars({defaultLayout:'layout'}))
 app.set('view engine', 'handlebars')
+
+// Body Parser Middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
+// set static public foler
+app.use('/public', express.static('public'))
 
 // set home route
 app.get('/', function(req,res){
@@ -42,17 +50,18 @@ app.get('/', function(req,res){
 // set post route
 app.post('/', function(req,res){
     console.log('test')
+    console.log(req.body)
     // change to database wordlist update
-    if (req.data=="true"){
+    if (req.body.answer=="correct"){
         console.log("got it right")
     }
-    if (req.data=="false"){
+    if (req.body.answer=="wrong"){
         console.log("got it wrong")
     }
 })
 
 //start server
-app.listen(8080, function(){
-    console.log('Server started on port 8080');
+app.listen(3000, function(){
+    console.log('Server started on port 3000');
 });
 
