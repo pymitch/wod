@@ -1,6 +1,6 @@
 const _ = require('underscore')
 module.exports = function(words){
-    
+    //req.tester = ''
     return function(req, res, next){
         // select word to be displayed
         
@@ -24,33 +24,8 @@ module.exports = function(words){
             "definitions": defs,
             "position": position
         }
-        console.log("opened js file")
-        console.log(newWord)
-        const jsonfile = require('jsonfile')
-        let file = './public/js/newWord.json'
-        let fileServer = './newWord.json'
-        jsonfile.writeFile(file, newWord,function(err){
-            console.error(err)
-        })
-        jsonfile.writeFile(fileServer, newWord,function(err){
-            console.error(err)
-        })
-        //let document = require('./index.html')
-        //console.log(document.getElementById("1").innerHTML)
+    
+        req.updateWords = newWord
         next()
     }
 }
-
-// // **review and update **
-// randomWord = function(wordsObj) {
-//     wordsArray = [];
-//     wordsArray = Object.keys(wordsObj);
-//     var random = wordsArray[Math.floor(Math.random()*wordsArray.length)];
-//     def = wordsObj[random]
-    
-//     var obj = {
-//         word: random,
-//         definition: def
-//     }
-//     return obj
-// }
