@@ -1,0 +1,8 @@
+2017-06-18T17:49:44.437-0500 I CONTROL  [main] Trying to install Windows service 'MongoDB'
+2017-06-18T17:49:44.438-0500 I CONTROL  [main] Error connecting to the Service Control Manager: Access is denied. (5)
+2017-06-18T17:50:58.378-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-06-18T17:50:58.685-0500 I CONTROL  [main] Trying to install Windows service 'MongoDB'
+2017-06-18T17:50:58.686-0500 I CONTROL  [main] Error connecting to the Service Control Manager: Access is denied. (5)
+2017-06-18T17:53:57.880-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-06-18T17:53:58.182-0500 I CONTROL  [main] Trying to install Windows service 'MongoDB'
+2017-06-18T17:53:58.182-0500 I CONTROL  [main] There is already a service named 'MongoDB', sleeping and retrying
