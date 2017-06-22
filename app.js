@@ -6,12 +6,13 @@ const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
 
 // connect to db
-mongoose.connecct('mongodb://localhost/wod')
+mongoose.connect('mongodb://localhost/wod')
 let db = mongoose.connection
 
 // check connection
 db.once('open',function(){
     console.log('connected to database')
+    //console.log(db.collections)
 })
 db.on('error',function(err){
     console.log(err)
@@ -21,7 +22,7 @@ db.on('error',function(err){
 const app = express();
 
 // bring in user model
-let User = require('.models/user')
+let User = require('./models/user')
 
 // // define article schema
 // var Schema = mongoose.Schema;
@@ -61,7 +62,8 @@ app.use('/public', express.static('public'))
 
 // set home route
 app.get('/', function(req,res){
-    User.find({}, function(err,article){
+    User.find({"user":"User1"}, function(err,User){
+        console.log(User);
         if(err){
             console.log(err)
         } else {
@@ -73,12 +75,11 @@ app.get('/', function(req,res){
                 def2: newWord.definitions[2],
                 def3: newWord.definitions[3],
                 position: newWord.position,
-                user: User.name
+                user: User.user
             })
         }
     })
 });
-
 
 // set post route
 app.post('/', function(req,res){
@@ -97,4 +98,3 @@ app.post('/', function(req,res){
 app.listen(3000, function(){
     console.log('Server started on port 3000');
 });
-
