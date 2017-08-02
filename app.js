@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
 
 // connect to db
-mongoose.connecct('mongodb://localhost/wod')
+mongoose.connect('mongodb://localhost/wod')
 let db = mongoose.connection
 
 // check connection
@@ -21,21 +21,7 @@ db.on('error',function(err){
 const app = express();
 
 // bring in user model
-let User = require('.models/user')
-
-// // define article schema
-// var Schema = mongoose.Schema;
-// var userSchema = new Schema({
-//     user: String, 
-//     bins:{
-//         bin1:[],
-//         bin2:[],
-//         bin3:[],
-//         bin4:[],
-//         bin5:[]
-//     },  
-//     lastLogin: Date
-// })
+let User = require('./models/user')
 
 // load words dictionary
 let wordList = require('./dictionary.json')
@@ -66,19 +52,19 @@ app.get('/', function(req,res){
             console.log(err)
         } else {
             let newWord = req.updateWords
-            res.render('layout', {
+            res.render('app', {
                 word: newWord.word,
                 def0: newWord.definitions[0],
                 def1: newWord.definitions[1],
                 def2: newWord.definitions[2],
                 def3: newWord.definitions[3],
                 position: newWord.position,
-                user: User.name
+                user: User.name,
+                title: "WOD app"
             })
         }
     })
 });
-
 
 // set post route
 app.post('/', function(req,res){
@@ -91,6 +77,14 @@ app.post('/', function(req,res){
     if (req.body.answer=="wrong"){
         console.log("got it wrong")
     }
+})
+
+//set signup route
+app.get('/signup', function(req,res){
+    res.render('register',{
+        layout: false,
+        title: "WOD Signup"        
+    })
 })
 
 //start server
