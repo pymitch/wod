@@ -24,20 +24,6 @@ const app = express();
 // bring in user model
 let User = require('./models/user')
 
-// // define article schema
-// var Schema = mongoose.Schema;
-// var userSchema = new Schema({
-//     user: String, 
-//     bins:{
-//         bin1:[],
-//         bin2:[],
-//         bin3:[],
-//         bin4:[],
-//         bin5:[]
-//     },  
-//     lastLogin: Date
-// })
-
 // load words dictionary
 let wordList = require('./dictionary.json')
 
