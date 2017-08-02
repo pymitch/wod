@@ -21,8 +21,27 @@ db.on('error',function(err){
 // initalize app
 const app = express();
 
-// bring in user model
+//bring in user model
 let User = require('./models/user')
+//*Currently User schema not doing anything
+
+//using a test user for now
+var testUser = function(req,res,next){
+    var user = {
+        name: "mitch",
+        bins:{
+            bin1:[],
+            bin2:[],
+            bin3:[],
+            bin4:[],
+            bin5:[]
+        },
+        password: "1234"
+    }
+    req.testUser = user
+    next()
+}
+app.use(testUser)
 
 // load words dictionary
 let wordList = require('./dictionary.json')
@@ -54,14 +73,16 @@ app.get('/', function(req,res){
             console.log(err)
         } else {
             let newWord = req.updateWords
+            let user = req.testUser
             res.render('layout', {
                 word: newWord.word,
+                
                 def0: newWord.definitions[0],
                 def1: newWord.definitions[1],
                 def2: newWord.definitions[2],
                 def3: newWord.definitions[3],
                 position: newWord.position,
-                user: User.user
+                user: user.name
             })
         }
     })
