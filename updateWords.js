@@ -1,4 +1,6 @@
 const _ = require('underscore')
+//module.exports allows function to be added to app express object
+
 module.exports = function(words){
     //req.tester = ''
     return function(req, res, next){

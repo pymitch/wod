@@ -4,6 +4,15 @@ const updateWords = require('./updateWords.js')
 const handlebars = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
+const passport = require('passport')
+const cookieParser = require('cookie-parser')
+
+//use local strategy for user auth
+var localStrategy = require('passport-local').Strategy
+
+// add routes
+var routes = require('./routes/index')
+var users = require('./routes/users')
 
 // connect to db
 mongoose.connect('mongodb://localhost/wod')
@@ -21,9 +30,10 @@ db.on('error',function(err){
 // initalize app
 const app = express();
 
-//bring in user model
-let User = require('./models/user')
-//*Currently User schema not doing anything
+
+// //bring in user model
+// let User = require('./models/user')
+// //*Currently User schema not doing anything
 
 //using a test user for now
 var testUser = function(req,res,next){
@@ -53,11 +63,27 @@ app.use(updateWords(wordList))
 app.engine('handlebars', handlebars({defaultLayout:'layout'}))
 app.set('view engine', 'handlebars')
 
+//app.use(logger('dev'));
+
 // Body Parser Middleware
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport config
+var User = require('./models/user');
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Express Validator Middleware
 //**goes here **
@@ -76,7 +102,6 @@ app.get('/', function(req,res){
             let user = req.testUser
             res.render('layout', {
                 word: newWord.word,
-                
                 def0: newWord.definitions[0],
                 def1: newWord.definitions[1],
                 def2: newWord.definitions[2],
@@ -100,6 +125,7 @@ app.post('/', function(req,res){
         console.log("got it wrong")
     }
 })
+
 
 //start server
 app.listen(3000, function(){
