@@ -11,8 +11,8 @@ const cookieParser = require('cookie-parser')
 var localStrategy = require('passport-local').Strategy
 
 // add routes
-//var routes = require('./routes/index')
-//var users = require('./routes/users')
+var routes = require('./routes/index')
+var users = require('./routes/users')
 
 // connect to db
 mongoose.connect('mongodb://localhost/wod')
@@ -88,44 +88,10 @@ passport.deserializeUser(User.deserializeUser());
 // Express Validator Middleware
 //**goes here **
 
+app.use('/', routes)
+
 // set static public foler
 app.use('/public', express.static('public'))
-
-// set home route
-app.get('/', function(req,res){
-    User.find({"user":"User1"}, function(err,User){
-        console.log(User);
-        if(err){
-            console.log(err)
-        } else {
-            let newWord = req.updateWords
-            let user = req.testUser
-            res.render('main', {
-                word: newWord.word,
-                def0: newWord.definitions[0],
-                def1: newWord.definitions[1],
-                def2: newWord.definitions[2],
-                def3: newWord.definitions[3],
-                position: newWord.position,
-                user: user.name
-            })
-        }
-    })
-});
-
-// set post route
-app.post('/', function(req,res){
-    console.log('test')
-    console.log(req.body)
-    // change to database wordlist update
-    if (req.body.answer=="correct"){
-        console.log("got it right")
-    }
-    if (req.body.answer=="wrong"){
-        console.log("got it wrong")
-    }
-})
-
 
 //start server
 app.listen(3000, function(){
