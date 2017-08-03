@@ -11,8 +11,8 @@ const cookieParser = require('cookie-parser')
 var localStrategy = require('passport-local').Strategy
 
 // add routes
-var routes = require('./routes/index')
-var users = require('./routes/users')
+//var routes = require('./routes/index')
+//var users = require('./routes/users')
 
 // connect to db
 mongoose.connect('mongodb://localhost/wod')
@@ -100,7 +100,7 @@ app.get('/', function(req,res){
         } else {
             let newWord = req.updateWords
             let user = req.testUser
-            res.render('layout', {
+            res.render('main', {
                 word: newWord.word,
                 def0: newWord.definitions[0],
                 def1: newWord.definitions[1],
